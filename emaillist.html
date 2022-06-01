@@ -1,0 +1,142 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/" />
+    <link
+      href="http://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Database</title>
+  </head>
+
+  <style>
+    th,
+    td {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    th {
+      text-align: left;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <body
+    style="
+      background-color: #e6edf5;
+      height: 100%;
+      margin: 0;
+      background: linear-gradient(45deg, #49a09d, #5f2c82);
+      font-family: sans-serif;
+    "
+  >
+    <header
+      id="header"
+      class="hoc clear headd"
+      style="
+        text-align: center;
+        height: 77px;
+        margin: auto;
+        max-width: 90%;
+        justify-content: space-between;
+        color: #ffffff;
+        background-color: #01546b;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <div id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+        <h3 class="headd-text">
+          <a class="headd-text" style="color: #ffffff" href="index.html"
+            >Kuagi Resources</a
+          >
+        </h3>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear" style="display: flex; font-size: 16px">
+          <!-- <li style="list-style-type: none; "><a style="text-decoration: none; font-size: 14px; padding: 10px; color: #FFFFFF;" href="index.html">HOME</a></li> -->
+
+          <li style="list-style-type: none">
+            <a
+              style="
+                text-decoration: none;
+                font-size: 14px;
+                padding: 10px;
+                color: #ffffff;
+              "
+              class="head-nav"
+              href="#"
+              >DATABASE</a
+            >
+          </li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </nav>
+    </header>
+
+    <div class="contaer" style="overflow: scroll">
+      <table
+        style="
+          width: 100%;
+          margin: auto;
+
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <thead>
+          <tr>
+            <th style="padding: 10px; background-color: #55608f">ID</th>
+            <th style="padding: 10px; background-color: #55608f">Emails</th>
+          </tr>
+        </thead>
+
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCi6ovd8Ltb1h3zxqDHm-lV1HO1Fc561PM",
+        authDomain: "kuagiwebsite.firebaseapp.com",
+        databaseURL: "https://kuagiwebsite-default-rtdb.firebaseio.com",
+        projectId: "kuagiwebsite",
+        storageBucket: "kuagiwebsite.appspot.com",
+        messagingSenderId: "893586736863",
+        appId: "1:893586736863:web:0b8160ad234c5b071a0b6a",
+        measurementId: "G-B6EY4PZDR4",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      var firebaseRef = firebase.database().ref("Client");
+      firebaseRef.once("value", function (snapshot) {
+        let data = snapshot.val();
+        for (i in data) {
+          var row = `<tr>
+       
+          <td>${data[i].Id}</td>
+          <td>${data[i].Input}</td>
+         
+          </tr>
+          `;
+
+          var table = $("#table-body");
+          table.append(row);
+        }
+      });
+    </script>
+  </body>
+</html>
