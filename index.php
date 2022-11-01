@@ -1074,7 +1074,7 @@
         id = new Date().getTime().toString();
         Kinput = document.getElementById("kola").value;
 
-        console.log(Kinput);
+   
       }
 
       function db() {
